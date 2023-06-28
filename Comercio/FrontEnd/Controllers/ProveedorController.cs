@@ -12,13 +12,19 @@ namespace FrontEnd.Controllers
         // GET: ProveedorController
         public ActionResult Index()
         {
-            return View();
+            proveedorHelper = new ProveedorHelper();
+            List<ProveedorViewModel> list = proveedorHelper.GetAll();
+
+            return View(list);
         }
 
         // GET: ProveedorController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            proveedorHelper = new ProveedorHelper();
+            ProveedorViewModel proveedor = proveedorHelper.GetById(id);
+
+            return View(proveedor);
         }
 
         // GET: ProveedorController/Create
@@ -30,10 +36,14 @@ namespace FrontEnd.Controllers
         // POST: ProveedorController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(ProveedorViewModel proveedor)
         {
             try
             {
+                proveedorHelper = new ProveedorHelper();
+                proveedor = proveedorHelper.Add(proveedor);
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -45,16 +55,23 @@ namespace FrontEnd.Controllers
         // GET: ProveedorController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            proveedorHelper = new ProveedorHelper();
+            ProveedorViewModel proveedor = proveedorHelper.GetById(id);
+
+            return View(proveedor);
         }
 
         // POST: ProveedorController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(ProveedorViewModel proveedor)
         {
             try
             {
+                proveedorHelper = new ProveedorHelper();
+                proveedor = proveedorHelper.Edit(proveedor);
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -66,16 +83,20 @@ namespace FrontEnd.Controllers
         // GET: ProveedorController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            proveedorHelper = new ProveedorHelper();
+            ProveedorViewModel proveedor= proveedorHelper.GetById(id);
+            return View(proveedor);
         }
 
         // POST: ProveedorController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(ProveedorViewModel proveedor)
         {
             try
             {
+                proveedorHelper = new ProveedorHelper();
+                proveedorHelper.Delete(proveedor.CodProveedor);
                 return RedirectToAction(nameof(Index));
             }
             catch
