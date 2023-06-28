@@ -9,12 +9,12 @@ namespace DAL.Implementations
 {
     public class UnidadDeTrabajo<T> : IDisposable where T : class
     {
-        private readonly QuizContext context;
+        private readonly ComercioContext context;
         
         public IDALGenerico<T> genericDAL;
 
 
-        public UnidadDeTrabajo(QuizContext _context)
+        public UnidadDeTrabajo(ComercioContext _context)
         {
             context = _context;
             genericDAL = new DALGenericoImpl<T>(context);

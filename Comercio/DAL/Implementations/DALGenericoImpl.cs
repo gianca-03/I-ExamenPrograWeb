@@ -13,9 +13,9 @@ namespace DAL.Implementations
     public class DALGenericoImpl<TEntity> : IDALGenerico<TEntity> where TEntity : class
     {
 
-        protected readonly QuizContext Context;
+        protected readonly ComercioContext Context;
 
-        public DALGenericoImpl(QuizContext context)
+        public DALGenericoImpl(ComercioContext context)
         {
             Context = context;
         }
